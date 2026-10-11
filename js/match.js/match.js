@@ -50,17 +50,17 @@ function tick(){
   if(M.fight){M.fight.t--;if(M.fight.t<=0){var wf=M.fight.side;resolveFight(M.fight);M.fight=null;if(Math.random()<0.75)M.push={line:['top','bot','mid'][Math.floor(Math.random()*3)],side:wf,t:8};}}
   if(M.push){M.push.t--;if(M.push.t<=0)M.push=null;}
   if(M.gank){M.gank.t--;if(M.gank.t<=0){resolveGank(M.gank);M.gank=null;}}
-  if(!M.roshan.alive&&M.roshan.timer>0&&M.roshan.timer<30&&M.roshanCall===0){M.roshanCall=Math.random()<0.5?'r':'d';ev('🐉 '+(M.roshanCall==='r'?'RADIANT':'DIRE')+' стягивается к Рошану!','ob');}
+  if(!M.roshan.alive&&M.roshan.timer>0&&M.roshan.timer<30&&M.roshanCall===0){M.roshanCall=Math.random()<0.5?'r':'d';ev(' '+(M.roshanCall==='r'?'RADIANT':'DIRE')+' стягивается к Рошану!','ob');}
   var all=[];for(i=0;i<G.players.length;i++)all.push(G.players[i]);for(i=0;i<M.dire.length;i++)all.push(M.dire[i]);
   for(i=0;i<all.length;i++){var p=all[i];
    if(!p.alive){p.respawn-=5;if(p.respawn<=0){p.alive=true;p.pos=POI[p.team+'Fount'].slice();p.target='buy';p._kind='buy';ev('↩️ '+p.name+' вернулся из фонтана','dc');}continue;}
    tryBuy(p);
    var tg=chooseTarget(p,mn,M);p._kind=tg.kind;moveToward(p,tg.pos[0],tg.pos[1],tg.speed);
    if(tg.kind==='lane'&&Math.random()<0.5){p.lh++;var g2=40+Math.floor(Math.random()*20);p.gold+=g2;if(p.team==='r')M.rg+=g2;else M.dg+=g2;if(Math.random()<0.12)ev('🌾 '+p.name+' last-hit (+'+g2+'g) [LH:'+p.lh+']','go');}
-   if(tg.kind==='lane'&&Math.random()<0.12){p.dn++;if(Math.random()<0.1)ev('🛡️ '+p.name+' denied a creep','dc');}
-   if(tg.kind==='jungle'&&Math.random()<0.4){var g3=60+Math.floor(Math.random()*80);p.gold+=g3;if(p.team==='r')M.rg+=g3;else M.dg+=g3;if(Math.random()<0.1)ev('🌲 '+p.name+' фармит кемп (+'+g3+'g)','go');}
+   if(tg.kind==='lane'&&Math.random()<0.12){p.dn++;if(Math.random()<0.1)ev('️ '+p.name+' denied a creep','dc');}
+   if(tg.kind==='jungle'&&Math.random()<0.4){var g3=60+Math.floor(Math.random()*80);p.gold+=g3;if(p.team==='r')M.rg+=g3;else M.dg+=g3;if(Math.random()<0.1)ev(' '+p.name+' фармит кемп (+'+g3+'g)','go');}
    if(tg.kind==='rune'){var nr=nearestRune(p,M);if(nr&&nr.d<5){var rk=null;if(dist(p.pos,POI.runeTop)<6)rk='t';else if(dist(p.pos,POI.runeBot)<6)rk='b';if(rk&&M.runes[rk].alive){M.runes[rk].alive=false;p.gold+=100;if(p.team==='r')M.rg+=100;else M.dg+=100;ev('💧 '+p.name+' забрал руну ('+(rk==='t'?'top':'bottom')+')','ob');}}}
-   if(tg.kind==='roshan'&&dist(p.pos,POI.roshan)<7&&M.roshan.alive&&Math.random()<0.3){M.roshan.alive=false;M.roshan.timer=TIMING.roshanMin+Math.floor(Math.random()*(TIMING.roshanMax-TIMING.roshanMin));M.roshanCall=0;var aegis=p.team==='r'?G.players:M.dire;var carrier=aegis[Math.floor(Math.random()*5)];carrier.gold+=400;carrier.aegis=true;if(p.team==='r')M.rg+=2000;else M.dg+=2000;ev('🐉 '+(p.team==='r'?'RADIANT':'DIRE')+' убил РОШАНА! Aegis -> '+carrier.name,'ob');}
+   if(tg.kind==='roshan'&&dist(p.pos,POI.roshan)<7&&M.roshan.alive&&Math.random()<0.3){M.roshan.alive=false;M.roshan.timer=TIMING.roshanMin+Math.floor(Math.random()*(TIMING.roshanMax-TIMING.roshanMin));M.roshanCall=0;var aegis=p.team==='r'?G.players:M.dire;var carrier=aegis[Math.floor(Math.random()*5)];carrier.gold+=400;carrier.aegis=true;if(p.team==='r')M.rg+=2000;else M.dg+=2000;ev(' '+(p.team==='r'?'RADIANT':'DIRE')+' убил РОШАНА! Aegis -> '+carrier.name,'ob');}
    if(tg.kind==='push'){var tgt=nearestEnemyTower(p,p.team,M.push?M.push.line:laneKey(p.role,p.team));if(tgt&&dist(p.pos,tgt.pos)<6){tgt.hp-=8+Math.floor(p.st.teamfight/10);if(tgt.hp<=0&&tgt.alive){tgt.alive=false;var gain=p.team==='r'?G.players:M.dire;for(var z=0;z<gain.length;z++)gain[z].gold+=250;if(p.team==='r')M.rg+=1250;else M.dg+=1250;ev('🏰 '+(p.team==='r'?'RADIANT':'DIRE')+' сломал башню T'+tgt.tier+' '+tgt.line+' (+250g каждому)','ob');if(tgt.tier===3)breakBars(p.team,tgt.line);}}}
   }
   if(allT3Dead('d')){endMatch('r');return;}
@@ -79,9 +79,9 @@ function resolveFight(f){var M=G.M;var rP=0,dP=0,i;for(i=0;i<G.players.length;i+
 }
 function resolveGank(g){var M=G.M;var by=g.by,on=g.on;if(!by.alive||!on.alive)return;var succ=on.vision?0.35:0.62;var ap=by.st.sense+by.st.teamfight+by.st.support+Math.random()*20;var dp=on.st.sense+Math.random()*20+(on.vision?30:0);
  if(ap>dp&&Math.random()<succ+0.2){if(on.aegis){on.aegis=false;ev('🛡️ '+on.name+' потерял Aegis при ганке','ob');}else{on.alive=false;on.respawn=18+(on.lvl||12)*2;on.kda.d++;on.streak=0;}by.kda.k++;by.kda.a++;by.streak++;var b=250+by.streak*40+Math.floor(Math.random()*120);by.gold+=b;if(g.side==='r')M.rg+=b;else M.dg+=b;if(g.side==='r')M.rk++;else M.dk++;ev((g.side==='r'?'⚔️ ':'💀 ')+by.name+' ганкнул и убил '+on.name+' (+'+b+'g)',g.side==='r'?'kr':'kd');streakMsg(by);}
- else{by.alive=false;by.respawn=18+(by.lvl||12)*2;by.kda.d++;by.streak=0;on.kda.k++;var b2=200;on.gold+=b2;if(g.side==='r')M.dg+=b2;else M.rg+=b2;if(g.side==='r')M.dk++;else M.rk++;ev('💀 '+on.name+' наказал ганкера '+by.name+'!',g.side==='r'?'kd':'kr');}
+ else{by.alive=false;by.respawn=18+(by.lvl||12)*2;by.kda.d++;by.streak=0;on.kda.k++;var b2=200;on.gold+=b2;if(g.side==='r')M.dg+=b2;else M.rg+=b2;if(g.side==='r')M.dk++;else M.rk++;ev(' '+on.name+' наказал ганкера '+by.name+'!',g.side==='r'?'kd':'kr');}
 }
-function streakMsg(p){if(p.streak===3)ev('🔥 '+p.name+' — Killing Spree!','sk');if(p.streak===5)ev('💥 '+p.name+' — MEGA KILL!','sk');if(p.streak===8)ev('👑 '+p.name+' — GODLIKE!','sk');if(p.streak===10)ev('⚡ '+p.name+' — BEYOND GODLIKE!','sk');}
+function streakMsg(p){if(p.streak===3)ev(' '+p.name+' — Killing Spree!','sk');if(p.streak===5)ev('💥 '+p.name+' — MEGA KILL!','sk');if(p.streak===8)ev('👑 '+p.name+' — GODLIKE!','sk');if(p.streak===10)ev('⚡ '+p.name+' — BEYOND GODLIKE!','sk');}
 function ev(t,ty){var M=G.M;var mn=Math.floor(M.time/60),sc=M.time%60;M.ev.unshift({t:t,ty:ty,s:mn+':'+(sc<10?'0':'')+sc});if(M.ev.length>60)M.ev.pop();}
 function spd(){G.speed=G.speed===2?4:(G.speed===4?8:2);el('m-spb','⏩ x'+G.speed);if(G.iv)clearInterval(G.iv);G.iv=setInterval(tick,1000/G.speed);}
 function sur(){if(confirm('Сдаться?'))endMatch('d');}
@@ -90,7 +90,7 @@ function endMatch(winner){
  if(won){G.wins++;G.rank+=25;G.money+=1000;G.xp+=50;}else{G.losses++;G.rank=Math.max(0,G.rank-25);G.money+=200;G.xp+=20;}
  if(G.xp>=G.xpm){G.lvl++;G.xp=0;G.xpm=Math.floor(G.xpm*1.5);}
  for(var i=0;i<G.players.length;i++){var p=G.players[i];p.xp+=30;if(p.xp>=p.xpm){p.lvl++;p.xp=0;p.xpm=Math.floor(p.xpm*1.5);p.drm+=2;p.dr=p.drm;}}
- el('r-ic',won?'🏆':'');el('r-ti',won?'ПОБЕДА!':'ПОРАЖЕНИЕ');el('r-ti').style.color=won?'#4caf50':'#f44336';el('r-sc',M.rk+' - '+M.dk);
+ el('r-ic',won?'🏆':'😔');el('r-ti',won?'ПОБЕДА!':'ПОРАЖЕНИЕ');el('r-ti').style.color=won?'#4caf50':'#f44336';el('r-sc',M.rk+' - '+M.dk);
  el('r-mo','+$'+(won?1000:200));el('r-rk',(won?'+':'-')+'25 RANK');el('r-rk').style.color=won?'#4caf50':'#f44336';el('r-rcard').style.borderColor=won?'#4caf50':'#f44336';el('r-rv',G.rank);
  var allh=G.players.concat(M.dire);var mvp=allh[0];for(var j=1;j<allh.length;j++)if((allh[j].kda.k+allh[j].kda.a)>(mvp.kda.k+mvp.kda.a))mvp=allh[j];
  el('r-mvp',mvp.name+' — '+mvp.kda.k+'K/'+mvp.kda.d+'D/'+mvp.kda.a+'A');
