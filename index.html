@@ -120,5 +120,13 @@
 <script src="js/match.js/match.js?v=8"></script>
 <script src="js/map.js/map.js?v=8"></script>
 <script src="js/main.js/main.js?v=8"></script>
+ <script>
+window.onerror=function(m,s,l){var d=document.getElementById('dbg');if(d){d.style.display='block';d.textContent='ERR '+String(s||'').split('/').pop()+' L'+l+': '+m;}return false;};
+(function(){try{
+ if(typeof init!=='function'||typeof go!=='function'){var d=document.getElementById('dbg');if(d){d.style.display='block';d.textContent='MISSING state.js или menu.js';}return;}
+ init();go('hub');
+}catch(e){var d2=document.getElementById('dbg');if(d2){d2.style.display='block';d2.textContent='BOOT ERR: '+e.message;}}}
+)();
+ </script>
 </body>
 </html>
