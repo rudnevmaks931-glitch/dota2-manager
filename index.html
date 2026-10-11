@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>DOTA 2 MANAGER</title>
-<link rel="stylesheet" href="style.css?v=4">
+<link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -114,28 +114,11 @@
 </div>
 <div class="modal" id="modal"><div class="moc" id="moc"></div></div>
 
-<script>
-(function(){
- var files=['data','state','menu','match','map','main'];
- var i=0;
- function dbg(msg){var d=document.getElementById('dbg');if(d){d.style.display='block';d.textContent=msg;}}
- function next(){
-  if(i>=files.length){return;}
-  var n=files[i];i++;
-  var a=document.createElement('script');
-  a.src='js/'+n+'.js?v=4';
-  a.onerror=function(){
-   var b=document.createElement('script');
-   b.src='js/'+n+'.js/'+n+'.js?v=4';
-   b.onerror=function(){dbg('MISSING '+n+'.js');next();};
-   b.onload=next;
-   document.body.appendChild(b);
-  };
-  a.onload=next;
-  document.body.appendChild(a);
- }
- next();
-})();
-</script>
+<script src="js/data.js/data.js?v=8"></script>
+<script src="js/state.js/state.js?v=8"></script>
+<script src="js/menu.js/menu.js?v=8"></script>
+<script src="js/match.js/match.js?v=8"></script>
+<script src="js/map.js/map.js?v=8"></script>
+<script src="js/main.js/main.js?v=8"></script>
 </body>
 </html>
