@@ -1,6 +1,4 @@
-// Глобальное состояние + утилиты + создание героев.
 var G={lvl:1,xp:0,xpm:100,money:5000,rank:1200,wins:0,losses:0,players:[],sel:null,speed:2,iv:null,M:null};
-
 function shuffle(a){a=a.slice();for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
 function uniq(arr,n){return shuffle(arr).slice(0,n);}
 function el(id,v){var e=document.getElementById(id);if(v!==undefined)e.textContent=v;return e;}
@@ -16,7 +14,6 @@ function laneKey(role,team){
  return team==='r'?'bot':'top';
 }
 function laneHome(role,team){return POI.lane[team+laneKey(role,team)].slice();}
-
 function mkHero(i,name,role,team){
  var b={lasthit:65+Math.floor(Math.random()*25),sense:65+Math.floor(Math.random()*25),teamfight:65+Math.floor(Math.random()*25),shotcall:65+Math.floor(Math.random()*25),support:65+Math.floor(Math.random()*25)};
  return {id:i,name:name,role:role,rl:ROLE_NAME[role],ic:ROLE_IC[role],team:team,
@@ -30,4 +27,4 @@ function init(){
  var roles=['carry','mid','offlane','support4','support5'];
  var names=uniq(RN,5);
  G.players=[];for(var i=0;i<5;i++)G.players.push(mkHero(i,names[i],roles[i],'r'));
-                                    }
+}
