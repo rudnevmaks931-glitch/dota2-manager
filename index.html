@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>DOTA 2 MANAGER</title>
-<link rel="stylesheet" href="style.css?v=8">
+<link rel="stylesheet" href="style.css?v=20">
 </head>
 <body>
 
@@ -13,7 +13,7 @@
 <div class="screen active" id="s-hub">
  <div class="header"><div class="ht">DOTA 2 MANAGER</div><div class="hs"><div class="sb r">ELITE <span id="h-rank">1200</span></div><div class="sb m">$<span id="h-money">5000</span></div></div></div>
  <div class="card g"><div style="display:flex;align-items:center;gap:10px"><div style="font-size:44px">👤</div><div style="flex:1"><div style="display:flex;align-items:center;gap:6px"><span style="font-size:17px">🇷🇺</span><span style="color:#fff;font-weight:bold;font-size:15px;letter-spacing:2px">TEAM PHOENIX</span></div><div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:10px;color:#888"><span>LVL <span id="h-lvl">1</span></span><span><span id="h-xp">0</span>/<span id="h-xpm">100</span> XP</span><span>LVL <span id="h-lvn">2</span></span></div><div class="pb"><div class="pf" id="h-xpb" style="width:0%"></div></div></div><div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:9px"><span style="color:#9c27b0">ELITE</span><span style="color:#c9a84c">LEGEND</span></div><div class="pb"><div class="pf pu" style="width:35%"></div></div><div style="font-size:8px;color:#666;margin-top:2px">1835 / 2500</div></div></div></div></div>
- <div class="card g" style="display:flex;justify-content:space-between;align-items:center"><div style="color:#c9a84c;font-size:10px;letter-spacing:1px">⚡ ENERGY DRINK · 6X REGEN</div><div style="color:#4caf50;font-size:13px;font-weight:bold">296:52:17</div></div>
+ <div class="card g" style="display:flex;justify-content:space-between;align-items:center"><div style="color:#c9a84c;font-size:10px;letter-spacing:1px"> ENERGY DRINK · 6X REGEN</div><div style="color:#4caf50;font-size:13px;font-weight:bold">296:52:17</div></div>
  <div class="st">Состав — 5 / 5</div><div class="pg" id="h-roster"></div>
  <div class="st">Запас — 0 / 4</div><div class="pg" id="h-bench"></div>
  <div class="st">Состав мейджоров — 0 / 5</div><div class="pg" id="h-major"></div>
@@ -90,10 +90,7 @@
   <div class="card" style="padding:7px;margin:0"><div style="font-size:9px;color:#888">Золото R</div><div style="color:#c9a84c;font-size:14px;font-weight:bold" id="m-gr">0</div></div>
   <div class="card" style="padding:7px;margin:0"><div style="font-size:9px;color:#888">Золото D</div><div style="color:#c9a84c;font-size:14px;font-weight:bold" id="m-gd">0</div></div>
  </div>
- <div class="mc" id="m-wrap">
- <img src="https://liquipedia.net/commons/images/thumb/9/9a/Dota_2_Map.png/1000px-Dota_2_Map.png" style="width:100%;height:100%;object-fit:contain;background:#16241a">
- <div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>
- </div><canvas class="mcv" id="m-cv"></canvas></div>
+ <div class="mc" id="m-wrap"><canvas class="mcv" id="m-cv"></canvas></div>
  <div class="md" id="m-st"></div>
  <div style="display:flex;gap:6px;padding:9px"><button class="btn sec" onclick="spd()" id="m-spb" style="flex:1">⏩ x2</button><button class="btn dg" onclick="sur()" style="flex:1">🏳️ Сдаться</button></div>
  <div class="st">Лента матча</div><div class="ef" id="m-ev"></div>
@@ -109,7 +106,7 @@
 </div>
 
 <div class="bn">
- <div class="nv a" onclick="go('hub')"><span class="ni">🏠</span>ХАБ</div>
+ <div class="nv a" onclick="go('hub')"><span class="ni"></span>ХАБ</div>
  <div class="nv" onclick="go('camp')"><span class="ni">⚔️</span>ЛАГЕРЬ</div>
  <div class="nv" onclick="go('modes')"><span class="ni">🎮</span>БОЙ</div>
  <div class="nv" onclick="go('base')"><span class="ni">🏢</span>БАЗА</div>
@@ -117,19 +114,19 @@
 </div>
 <div class="modal" id="modal"><div class="moc" id="moc"></div></div>
 
-<script src="js/data.js/data.js?v=8"></script>
-<script src="js/state.js/state.js?v=8"></script>
-<script src="js/menu.js/menu.js?v=8"></script>
-<script src="js/match.js/match.js?v=8"></script>
-<script src="js/map.js/map.js?v=8"></script>
-<script src="js/main.js/main.js?v=8"></script>
- <script>
+<script src="js/data.js/data.js?v=20"></script>
+<script src="js/state.js/state.js?v=20"></script>
+<script src="js/menu.js/menu.js?v=20"></script>
+<script src="js/match.js/match.js?v=20"></script>
+<script src="js/map.js/map.js?v=20"></script>
+<script src="js/main.js/main.js?v=20"></script>
+<script>
 window.onerror=function(m,s,l){var d=document.getElementById('dbg');if(d){d.style.display='block';d.textContent='ERR '+String(s||'').split('/').pop()+' L'+l+': '+m;}return false;};
 (function(){try{
  if(typeof init!=='function'||typeof go!=='function'){var d=document.getElementById('dbg');if(d){d.style.display='block';d.textContent='MISSING state.js или menu.js';}return;}
  init();go('hub');
 }catch(e){var d2=document.getElementById('dbg');if(d2){d2.style.display='block';d2.textContent='BOOT ERR: '+e.message;}}}
 )();
- </script>
+</script>
 </body>
 </html>
