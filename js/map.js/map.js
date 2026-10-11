@@ -1,7 +1,6 @@
 function initMap(){
  var wrap=document.getElementById('m-wrap');
- src="https://raw.githubusercontent.com/rudnevmaks931-glitch/dota2-manager/refs/heads/main/2d38ff45418b1acb8e06c72f9c8a9b67.jpg"
- wrap.innerHTML='<img src="ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ" style="width:100%;height:100%;object-fit:contain;background:#16241a" id="game-map"><div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>';
+ wrap.innerHTML='<img src="https://raw.githubusercontent.com/rudnevmaks931-glitch/dota2-manager/refs/heads/main/2d38ff45418b1acb8e06c72f9c8a9b67.jpg" style="width:100%;height:100%;object-fit:contain;background:#16241a" id="game-map"><div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>';
  var hint=document.getElementById('m-hint');if(hint)hint.style.display='none';
 }
 function drawMap(){}
