@@ -1,4 +1,3 @@
-// Навигация и все экраны вне боя.
 function go(id){
  var ss=document.querySelectorAll('.screen');for(var i=0;i<ss.length;i++)ss[i].classList.remove('active');
  document.getElementById('s-'+id).classList.add('active');
