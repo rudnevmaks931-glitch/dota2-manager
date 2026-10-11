@@ -1,6 +1,7 @@
 function initMap(){
  var wrap=document.getElementById('m-wrap');
- wrap.innerHTML='<img src="https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/map/minimap.jpg" style="width:100%;height:100%;object-fit:contain;background:#16241a" id="game-map"><div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>';
+ src="https://raw.githubusercontent.com/rudnevmaks931-glitch/dota2-manager/refs/heads/main/2d38ff45418b1acb8e06c72f9c8a9b67.jpg"
+ wrap.innerHTML='<img src="ВСТАВЬ_СЮДА_СВОЮ_ССЫЛКУ" style="width:100%;height:100%;object-fit:contain;background:#16241a" id="game-map"><div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>';
  var hint=document.getElementById('m-hint');if(hint)hint.style.display='none';
 }
 function drawMap(){}
@@ -22,7 +23,7 @@ function render(){
  for(var i=0;i<G.players.length;i++)drawDot(G.players[i],i+1,24);
  for(var i=0;i<M.dire.length;i++)drawDot(M.dire[i],i+1,24);
  var st=el('m-st');st.innerHTML='';
- for(var i=0;i<G.players.length;i++){var p=G.players[i];var k=!p.alive?'dd':(p._kind==='fight'?'f':(p._kind==='gank'||p._kind==='jungle'||p._kind==='roshan'?'r':''));var lbl=!p.alive?(' '+Math.max(0,p.respawn)+'s'):(p._kind==='fight'?'Драка':p._kind==='gank'?'Ганк':p._kind==='jungle'?'Лес':p._kind==='roshan'?'Рошан':p._kind==='push'?'Пуш':p._kind==='buy'?'База':p._kind==='rune'?'Руна':p._kind==='defend'?'Деф':'Фарм');var d=document.createElement('div');d.className='sc2 '+k;var dot2=document.createElement('div');dot2.className='d';d.appendChild(dot2);var sp=document.createElement('span');sp.textContent=(i+1)+' '+p.name+': '+lbl;d.appendChild(sp);st.appendChild(d);}
+ for(var i=0;i<G.players.length;i++){var p=G.players[i];var k=!p.alive?'dd':(p._kind==='fight'?'f':(p._kind==='gank'||p._kind==='jungle'||p._kind==='roshan'?'r':''));var lbl=!p.alive?('✝ '+Math.max(0,p.respawn)+'s'):(p._kind==='fight'?'Драка':p._kind==='gank'?'Ганк':p._kind==='jungle'?'Лес':p._kind==='roshan'?'Рошан':p._kind==='push'?'Пуш':p._kind==='buy'?'База':p._kind==='rune'?'Руна':p._kind==='defend'?'Деф':'Фарм');var d=document.createElement('div');d.className='sc2 '+k;var dot2=document.createElement('div');dot2.className='d';d.appendChild(dot2);var sp=document.createElement('span');sp.textContent=(i+1)+' '+p.name+': '+lbl;d.appendChild(sp);st.appendChild(d);}
  var evHtml='';var lim=M.ev.length<22?M.ev.length:22;for(var i=0;i<lim;i++){var e=M.ev[i];evHtml+='<div class="ev '+e.ty+'">['+e.s+'] '+e.t+'</div>';}el('m-ev').innerHTML=evHtml;
  var h='<div style="color:#4caf50;font-weight:bold;margin-bottom:5px">RADIANT · Kills '+M.rk+' · Gold '+Math.floor(M.rg)+'</div>';
  for(var i=0;i<G.players.length;i++){var pp=G.players[i];h+='<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #161616;font-size:9px"><span style="color:#4caf50">'+pp.name+'</span><span style="color:#666">'+pp.lh+'/'+pp.dn+'</span><span style="color:#c9a84c">'+pp.kda.k+'/'+pp.kda.d+'/'+pp.kda.a+'</span><span>$'+Math.floor(pp.gold)+'</span><span style="color:#888">'+pp.inv.length+'/6</span></div>';}
