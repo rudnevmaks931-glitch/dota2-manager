@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>DOTA 2 MANAGER</title>
+<link rel="stylesheet" href="style.css?v=1">
+</head>
+<body>
+
+<div id="dbg" onclick="this.style.display='none'">DEBUG</div>
+
+<!-- ===== HUB ===== -->
+<div class="screen active" id="s-hub">
+ <div class="header"><div class="ht">DOTA 2 MANAGER</div><div class="hs"><div class="sb r">ELITE <span id="h-rank">1200</span></div><div class="sb m">$<span id="h-money">5000</span></div></div></div>
+ <div class="card g"><div style="display:flex;align-items:center;gap:10px"><div style="font-size:44px">👤</div><div style="flex:1"><div style="display:flex;align-items:center;gap:6px"><span style="font-size:17px">🇷🇺</span><span style="color:#fff;font-weight:bold;font-size:15px;letter-spacing:2px">TEAM PHOENIX</span></div><div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:10px;color:#888"><span>LVL <span id="h-lvl">1</span></span><span><span id="h-xp">0</span>/<span id="h-xpm">100</span> XP</span><span>LVL <span id="h-lvn">2</span></span></div><div class="pb"><div class="pf" id="h-xpb" style="width:0%"></div></div></div><div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:9px"><span style="color:#9c27b0">ELITE</span><span style="color:#c9a84c">LEGEND</span></div><div class="pb"><div class="pf pu" style="width:35%"></div></div><div style="font-size:8px;color:#666;margin-top:2px">1835 / 2500</div></div></div></div></div>
+ <div class="card g" style="display:flex;justify-content:space-between;align-items:center"><div style="color:#c9a84c;font-size:10px;letter-spacing:1px">⚡ ENERGY DRINK · 6X REGEN</div><div style="color:#4caf50;font-size:13px;font-weight:bold">296:52:17</div></div>
+ <div class="st">Состав — 5 / 5</div><div class="pg" id="h-roster"></div>
+ <div class="st">Запас — 0 / 4</div><div class="pg" id="h-bench"></div>
+ <div class="st">Состав мейджоров — 0 / 5</div><div class="pg" id="h-major"></div>
+</div>
+
+<!-- ===== PLAYER ===== -->
+<div class="screen" id="s-player">
+ <div class="header"><button class="btn sm sec" onclick="go('hub')" style="width:auto">← Назад</button><div class="ht" id="p-name2">ИГРОК</div><div class="hs"><div class="sb">LVL <span id="p-lvl2">1</span></div></div></div>
+ <div class="card g"><div style="display:flex;gap:12px;align-items:center"><div style="font-size:52px" id="p-av">🗡️</div><div style="flex:1"><div style="font-size:18px;font-weight:bold;color:#fff" id="p-nm">Name</div><div style="color:#c9a84c;font-size:10px;letter-spacing:2px" id="p-rl">CARRY</div><div style="margin-top:6px"><span class="pt" id="p-tr">TIER 8</span></div></div></div>
+ <div style="margin-top:8px"><div style="display:flex;justify-content:space-between;font-size:9px;color:#888"><span>Опыт</span><span><span id="p-xp">0</span>/<span id="p-xpm">100</span></span></div><div class="pb"><div class="pf" id="p-xpb" style="width:0%"></div></div></div>
+ <div style="margin-top:6px"><div style="display:flex;justify-content:space-between;font-size:9px;color:#888"><span>Выносливость</span><span><span id="p-st">80</span>/100</span></div><div class="pb"><div class="pf gr" id="p-stb" style="width:80%"></div></div></div>
+ <button class="btn sec" style="margin-top:8px">+50 к выносливости (реклама)</button></div>
+ <div class="st">Характеристики</div><div class="sg" id="p-stats"></div>
+ <div class="st">Инвентарь (матч)</div><div class="inv" id="p-inv"></div>
+ <div class="st">Экипировка</div><div id="p-eq"></div>
+ <div class="st">Тренировка</div><div class="card">
+  <div style="display:flex;justify-content:space-between;font-size:9px;color:#888"><span>Очки упражнений</span><span><span id="p-dr">14</span>/<span id="p-drm">14</span></span></div><div class="pb"><div class="pf" id="p-drb" style="width:100%"></div></div>
+  <div style="background:#1a1a1a;border-left:3px solid #ff9800;padding:7px;margin:8px 0;font-size:9px;color:#ff9800">ЛИМИТ УПРАЖНЕНИЙ ДОСТИГНУТ · Level up to unlock more drills</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:8px">
+   <button class="btn sm sec" onclick="tr('lasthit')">LH +2<br>$200</button><button class="btn sm sec" onclick="tr('sense')">SENSE +2<br>$200</button><button class="btn sm sec" onclick="tr('teamfight')">CLUTCH +2<br>$200</button>
+   <button class="btn sm sec" onclick="tr('shotcall')">COMMS +2<br>$200</button><button class="btn sm sec" onclick="tr('support')">UTIL +2<br>$200</button><button class="btn sm sec" onclick="trPerk()">PERK +4<br>$1000</button></div>
+  <div style="display:flex;gap:6px;margin-top:8px"><button class="btn sec" style="flex:1" onclick="rst()">Сбросить $900</button><button class="btn dg" style="flex:1" onclick="rel()">Отпустить +$86889</button></div>
+ </div>
+</div>
+
+<!-- ===== CAMP ===== -->
+<div class="screen" id="s-camp">
+ <div class="header"><button class="btn sm sec" onclick="go('hub')" style="width:auto">← Назад</button><div class="ht">Лагерь</div><div class="hs"><div class="sb m">$<span id="c-money">5000</span></div></div></div>
+ <div class="st">Рекруты — всего <span id="c-cnt">5</span></div><div class="tabs"><div class="tb a">Все <span id="c-all">5</span></div><div class="tb">На тренировке 0</div><div class="tb">Свободны <span id="c-free">5</span></div></div>
+ <div id="c-list"></div>
+</div>
+
+<!-- ===== SHOP ===== -->
+<div class="screen" id="s-shop">
+ <div class="header"><button class="btn sm sec" onclick="go('hub')" style="width:auto">← Назад</button><div class="ht">Магазин</div><div class="hs"><div class="sb m">$<span id="sh-money">5000</span></div></div></div>
+ <div class="tabs"><div class="tb a" onclick="shTab('eq',this)">Оборудование</div><div class="tb" onclick="shTab('bo',this)">Бустеры</div></div>
+ <div id="sh-eq"><div class="card g"><div style="display:flex;justify-content:space-between;align-items:center"><div><div style="color:#c9a84c;font-weight:bold;font-size:13px">Стартовый набор</div><div style="font-size:9px;color:#888;margin-top:3px">3 легендарных жетона · 5000$ · 1 экзо мышь</div></div><div style="color:#c9a84c;font-size:16px;font-weight:bold">$3.00</div></div></div>
+ <div class="st">Оборудование</div><div style="padding:0 9px;font-size:9px;color:#888">Бонус к перку рекрута: от +1 обычный до +4 легендарный. По одному на рекрута.</div><div class="ig" id="sh-items"></div></div>
+ <div id="sh-bo" style="display:none"><div class="st">Бустеры</div><div class="ig" id="sh-boost"></div></div>
+</div>
+
+<!-- ===== BASE ===== -->
+<div class="screen" id="s-base">
+ <div class="header"><button class="btn sm sec" onclick="go('hub')" style="width:auto">← Назад</button><div class="ht">База команды</div></div>
+ <div class="bi">🏢</div><div style="text-align:center;color:#c9a84c;font-size:11px;letter-spacing:2px">Этап 3</div>
+ <div class="tabs"><div class="tb a" onclick="bsTab('re',this)">RESEARCH LAB</div><div class="tb" onclick="bsTab('op',this)">OPERATIONS</div><div class="tb" onclick="bsTab('ne',this)">NETWORK</div></div>
+ <div id="b-re">
+  <div class="card"><div style="display:flex;justify-content:space-between"><div style="color:#fff;font-weight:bold">STREAMING ROOM</div><div style="color:#888;font-size:10px">11/11</div></div><div style="color:#c9a84c;font-size:22px;font-weight:bold;margin:4px 0">+20%</div><div class="pb"><div class="pf" style="width:100%"></div></div><div style="font-size:9px;color:#888">Streaming income +20%</div></div>
+  <div class="card"><div style="display:flex;justify-content:space-between"><div style="color:#fff;font-weight:bold">QUARTERMASTER</div><div style="color:#888;font-size:10px">11/11</div></div><div style="color:#c9a84c;font-size:22px;font-weight:bold;margin:4px 0">-10%</div><div class="pb"><div class="pf" style="width:100%"></div></div><div style="font-size:9px;color:#888">Cash skin prices -10%</div></div>
+  <div class="card"><div style="display:flex;justify-content:space-between"><div style="color:#fff;font-weight:bold">PERFORMANCE LAB</div><div style="color:#888;font-size:10px">0/11</div></div><div style="font-size:9px;color:#888;margin:4px 0">Drill time -3% за уровень</div><button class="btn sm" style="width:100%">Уровень 1 · $2500 · 15М</button></div>
+ </div>
+ <div id="b-op" style="display:none">
+  <div class="st">Задачи недели</div>
+  <div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div style="flex:1"><div style="color:#fff;font-size:11px">Выиграйте матч, не отдав ни одного раунда</div><div style="display:flex;justify-content:space-between;margin-top:4px"><span style="color:#888;font-size:9px">0/1</span><span style="color:#c9a84c;font-size:10px">$3900</span></div></div><button class="btn sm sec">Заменить</button></div></div>
+  <div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><div style="flex:1"><div style="color:#fff;font-size:11px">Проведите 3 киберспортивных матча</div><div style="display:flex;justify-content:space-between;margin-top:4px"><span style="color:#888;font-size:9px">0/3</span><span style="color:#c9a84c;font-size:10px">$2950</span></div></div><button class="btn sm sec">Заменить</button></div></div>
+ </div>
+ <div id="b-ne" style="display:none">
+  <div class="st">Скаутские миссии</div>
+  <div class="card"><div style="display:flex;gap:10px;align-items:center"><div style="font-size:32px">🕵️</div><div style="flex:1"><div style="color:#fff;font-weight:bold">ALEX</div><div style="color:#c9a84c;font-size:9px">T8 AGGRESSION</div><div style="font-size:8px;color:#888;margin-top:3px">Прицел 79 · Чутьё 62 · Клатч 99 · Связь 100</div></div></div><button class="btn sm sec" style="margin-top:8px">Убрать</button></div>
+  <div class="card"><div style="font-size:9px;color:#888;margin-bottom:6px">Отправьте рекрута на поиски другого. Чем выше цель — тем меньше шанс.</div><button class="btn" style="width:100%">Отправить скаута · 6Ч</button></div>
+ </div>
+</div>
+
+<!-- ===== MODES ===== -->
+<div class="screen" id="s-modes">
+ <div class="header"><button class="btn sm sec" onclick="go('hub')" style="width:auto">← Назад</button><div class="ht">Выбор режима</div></div>
+ <div class="card g"><div style="color:#c9a84c;font-weight:bold;font-size:13px">День финала: +50% опыта и денег</div><div style="font-size:9px;color:#888;margin-top:3px">Каждый матч, стоящий выносливости, приносит +50% сегодня.</div><button class="btn" style="margin-top:8px">Реклама: ещё +25% на час</button></div>
+ <div class="mo" onclick="startMatch('training')"><div class="mi">🎯</div><div class="mf"><div class="mn">TRAINING</div><div class="mds">Тренировка. Ранг не на кону. 1x опыт.</div></div><div class="mtg">BO3</div></div>
+ <div class="mo" onclick="startMatch('ranked')"><div class="mi">⚔️</div><div class="mf"><div class="mn">RANKED</div><div class="mds">±25 за матч. 1.5x опыт. 25 выносливости.</div></div><div class="mtg">BO6</div></div>
+ <div class="mo" onclick="startMatch('esport')"><div class="mi">🏆</div><div class="mf"><div class="mn">ESPORT MATCH</div><div class="mds">Полный матч. ±40 ранг. 4x опыт.</div></div><div class="mtg">MR</div></div>
+ <div class="mo" onclick="startMatch('tournament')"><div class="mi">📋</div><div class="mf"><div class="mn">TOURNAMENT</div><div class="mds">Плей-офф на вылет. Топ-3 призы. 2x опыт.</div></div><div class="mtg">BO6</div></div>
+ <div class="mo" onclick="startMatch('majors')"><div class="mi">⭐</div><div class="mf"><div class="mn">MAJORS</div><div class="mds">Финальный день. Bo5 в 16:00.</div></div><div class="mtg">WEEKEND</div></div>
+</div>
+
+<!-- ===== MATCH ===== -->
+<div class="screen" id="s-match">
+ <div class="hint" id="m-hint" style="display:none">⚠️ Карта не рисуется в этом предпросмотре. Открой ссылку GitHub Pages в Chrome. Бой, лента и табло работают здесь.</div>
+ <div class="mh"><div class="ti"><div class="tn ra">RADIANT</div><div class="ts" style="color:#4caf50" id="m-sr">0</div></div><div style="text-align:center"><div class="mt" id="m-tm">0:00</div><div class="mp" id="m-ph">Драфт</div></div><div class="ti"><div class="tn di">DIRE</div><div class="ts" style="color:#f44336" id="m-sd">0</div></div></div>
+ <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:9px">
+  <div class="card" style="padding:7px;margin:0"><div style="font-size:9px;color:#888">Золото R</div><div style="color:#c9a84c;font-size:14px;font-weight:bold" id="m-gr">0</div></div>
+  <div class="card" style="padding:7px;margin:0"><div style="font-size:9px;color:#888">Золото D</div><div style="color:#c9a84c;font-size:14px;font-weight:bold" id="m-gd">0</div></div>
+ </div>
+ <div class="mc" id="m-wrap"><canvas class="mcv" id="m-cv"></canvas></div>
+ <div class="md" id="m-st"></div>
+ <div style="display:flex;gap:6px;padding:9px"><button class="btn sec" onclick="spd()" id="m-spb" style="flex:1">⏩ x2</button><button class="btn dg" onclick="sur()" style="flex:1">🏳️ Сдаться</button></div>
+ <div class="st">Лента матча</div><div class="ef" id="m-ev"></div>
+ <div class="st">Табло</div><div class="card" style="padding:8px" id="m-sb"></div>
+</div>
+
+<!-- ===== RESULT ===== -->
+<div class="screen" id="s-result">
+ <div style="padding:18px;text-align:center"><div style="font-size:52px;margin-bottom:14px" id="r-ic">🏆</div><div style="font-size:28px;font-weight:bold;margin-bottom:8px" id="r-ti">Победа</div><div style="color:#888;font-size:11px;letter-spacing:2px;margin-bottom:22px">RANKED МАТЧ ЗАВЕРШЁН</div><div style="font-size:42px;font-weight:bold;color:#c9a84c;margin-bottom:22px" id="r-sc">0 - 0</div>
+ <div class="card"><div style="color:#888;font-size:10px;letter-spacing:2px;margin-bottom:12px">MVP: <span id="r-mvp" style="color:#2196f3"></span></div><div style="color:#888;font-size:10px;letter-spacing:2px;margin-bottom:8px">XP GAINED</div><div id="r-xp"></div></div>
+ <div class="card g"><div style="color:#4caf50;font-size:22px;font-weight:bold" id="r-mo">+$0</div><div style="color:#888;font-size:9px;margin-top:3px">EARNED · GLOVES BONUS +$15</div></div>
+ <div class="card" id="r-rcard"><div style="font-size:22px;font-weight:bold" id="r-rk">+25 RANK</div><div style="display:flex;justify-content:center;align-items:center;gap:6px;margin-top:6px"><span style="background:#9c27b0;color:#fff;padding:3px 7px;border-radius:4px;font-size:10px">ELITE</span><span style="color:#fff;font-size:13px" id="r-rv">1200</span></div></div>
+ <button class="btn sec">+$800 (реклама)</button><button class="btn" onclick="go('hub')">Назад в хаб</button></div>
+</div>
+
+<!-- ===== NAV ===== -->
+<div class="bn">
+ <div class="nv a" onclick="go('hub')"><span class="ni">🏠</span>ХАБ</div>
+ <div class="nv" onclick="go('camp')"><span class="ni">⚔️</span>ЛАГЕРЬ</div>
+ <div class="nv" onclick="go('modes')"><span class="ni">🎮</span>БОЙ</div>
+ <div class="nv" onclick="go('base')"><span class="ni">🏢</span>БАЗА</div>
+ <div class="nv" onclick="go('shop')"><span class="ni">🛒</span>МАГАЗИН</div>
+</div>
+<div class="modal" id="modal"><div class="moc" id="moc"></div></div>
+
+<!-- ПОРЯДОК = ЗАВИСИМОСТИ. Ошибка в одном файле не валит остальные. -->
+<script src="js/data.js?v=1"></script>
+<script src="js/state.js?v=1"></script>
+<script src="js/menu.js?v=1"></script>
+<script src="js/match.js?v=1"></script>
+<script src="js/map.js?v=1"></script>
+<script src="js/main.js?v=1"></script>
+</body>
+                                                                                                                                                                                                   </html>
