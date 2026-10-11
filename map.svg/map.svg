@@ -1,12 +1,10 @@
 var cv,cx,W,H;
 function initMap(){
  var wrap=document.getElementById('m-wrap');
- wrap.innerHTML='<img src="map.svg?v=1" style="width:100%;height:100%;object-fit:contain;background:#16241a" id="game-map"><div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>';
+ wrap.innerHTML='<img src="map.svg/map.svg?v=15" style="width:100%;height:100%;object-fit:contain;background:#16241a" id="game-map"><div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>';
  W=wrap.clientWidth;H=wrap.clientHeight;
 }
-function drawMap(){
- // SVG уже нарисован, ничего не делаем
-}
+function drawMap(){}
 function drawDot(p,num,ds){
  var layer=document.getElementById('hero-layer');
  if(!layer)return;
