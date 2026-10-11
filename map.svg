@@ -1,59 +1,32 @@
-<svg viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
-  <!-- Фон -->
-  <rect width="1000" height="1000" fill="#1a2a1a"/>
-  
-  <!-- Река (диагональ) -->
-  <line x1="0" y1="0" x2="1000" y2="1000" stroke="#1c4a78" stroke-width="70" stroke-linecap="round"/>
-  <line x1="0" y1="0" x2="1000" y2="1000" stroke="#2a6aa0" stroke-width="15" stroke-linecap="round"/>
-  
-  <!-- Линии -->
-  <path d="M 100,900 L 100,100 L 900,100" stroke="#5a4a2c" stroke-width="45" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M 100,900 L 900,900 L 900,100" stroke="#5a4a2c" stroke-width="45" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M 100,900 L 900,100" stroke="#5a4a2c" stroke-width="45" fill="none" stroke-linecap="round"/>
-  
-  <!-- Башни Radiant (зелёные) -->
-  <rect x="60" y="700" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="60" y="500" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="60" y="300" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="280" y="880" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="480" y="880" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="700" y="880" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="220" y="740" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="360" y="600" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  <rect x="440" y="520" width="40" height="40" fill="#3fae4a" stroke="#8fd897" stroke-width="3"/>
-  
-  <!-- Башни Dire (красные) -->
-  <rect x="900" y="260" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="900" y="460" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="900" y="660" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="680" y="80" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="480" y="80" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="260" y="80" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="740" y="220" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="600" y="360" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  <rect x="520" y="440" width="40" height="40" fill="#e04338" stroke="#f2a09a" stroke-width="3"/>
-  
-  <!-- Базы -->
-  <rect x="40" y="880" width="80" height="80" fill="#1b5e20" stroke="#4caf50" stroke-width="4"/>
-  <rect x="880" y="40" width="80" height="80" fill="#b71c1c" stroke="#f44336" stroke-width="4"/>
-  
-  <!-- Рошан -->
-  <circle cx="600" cy="400" r="50" fill="#4a1a6a" stroke="#9c27b0" stroke-width="4"/>
-  
-  <!-- Руны -->
-  <circle cx="380" cy="380" r="25" fill="#2196f3"/>
-  <circle cx="620" cy="620" r="25" fill="#2196f3"/>
-  
-  <!-- Джунгли кемпы -->
-  <circle cx="300" cy="700" r="40" fill="#0c1c0c"/>
-  <circle cx="200" cy="800" r="40" fill="#0c1c0c"/>
-  <circle cx="400" cy="820" r="40" fill="#0c1c0c"/>
-  <circle cx="700" cy="300" r="40" fill="#0c1c0c"/>
-  <circle cx="800" cy="200" r="40" fill="#0c1c0c"/>
-  <circle cx="600" cy="180" r="40" fill="#0c1c0c"/>
-  
-  <!-- Подписи -->
-  <text x="500" y="50" font-size="40" fill="rgba(255,255,255,0.4)" text-anchor="middle" font-family="Courier New">TOP LANE</text>
-  <text x="500" y="500" font-size="40" fill="rgba(255,255,255,0.4)" text-anchor="middle" font-family="Courier New">MID</text>
-  <text x="500" y="970" font-size="40" fill="rgba(255,255,255,0.4)" text-anchor="middle" font-family="Courier New">BOT LANE</text>
-</svg>
+function initMap(){
+ var wrap=document.getElementById('m-wrap');
+ wrap.innerHTML='<img src="map.svg?v=17" style="width:100%;height:100%;object-fit:contain;background:#16241a" id="game-map"><div id="hero-layer" style="position:absolute;top:0;left:0;width:100%;height:100%"></div>';
+ var hint=document.getElementById('m-hint');if(hint)hint.style.display='none';
+}
+function drawMap(){}
+function drawDot(p,num,ds){
+ var layer=document.getElementById('hero-layer');
+ if(!layer)return;
+ var x=p.pos[0]+'%',y=p.pos[1]+'%';
+ var dot=document.createElement('div');
+ dot.style.cssText='position:absolute;left:'+x+';top:'+y+';transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;background:'+(p.team==='r'?'#43a047':'#e53935')+';border:2px solid '+(p._kind==='fight'?'#ffeb3b':'#fff')+';display:flex;align-items:center;justify-content:center;color:'+(p.team==='r'?'#000':'#fff')+';font-weight:bold;font-size:12px;z-index:'+(p.alive?10:1);
+ dot.textContent=p.alive?num:'✝';
+ if(!p.alive)dot.style.opacity='0.4';
+ if(p.aegis){dot.style.boxShadow='0 0 0 2px #ffd700';}
+ layer.appendChild(dot);
+}
+function render(){
+ var M=G.M;if(!M)return;var mn=Math.floor(M.time/60),sc=M.time%60;
+ el('m-tm',mn+':'+(sc<10?'0':'')+sc);el('m-ph',M.phase);el('m-sr',M.rk);el('m-sd',M.dk);el('m-gr',Math.floor(M.rg));el('m-gd',Math.floor(M.dg));
+ var layer=document.getElementById('hero-layer');if(layer)layer.innerHTML='';
+ for(var i=0;i<G.players.length;i++)drawDot(G.players[i],i+1,24);
+ for(var i=0;i<M.dire.length;i++)drawDot(M.dire[i],i+1,24);
+ var st=el('m-st');st.innerHTML='';
+ for(var i=0;i<G.players.length;i++){var p=G.players[i];var k=!p.alive?'dd':(p._kind==='fight'?'f':(p._kind==='gank'||p._kind==='jungle'||p._kind==='roshan'?'r':''));var lbl=!p.alive?('✝ '+Math.max(0,p.respawn)+'s'):(p._kind==='fight'?'Драка':p._kind==='gank'?'Ганк':p._kind==='jungle'?'Лес':p._kind==='roshan'?'Рошан':p._kind==='push'?'Пуш':p._kind==='buy'?'База':p._kind==='rune'?'Руна':p._kind==='defend'?'Деф':'Фарм');var d=document.createElement('div');d.className='sc2 '+k;var dot2=document.createElement('div');dot2.className='d';d.appendChild(dot2);var sp=document.createElement('span');sp.textContent=(i+1)+' '+p.name+': '+lbl;d.appendChild(sp);st.appendChild(d);}
+ var evHtml='';var lim=M.ev.length<22?M.ev.length:22;for(var i=0;i<lim;i++){var e=M.ev[i];evHtml+='<div class="ev '+e.ty+'">['+e.s+'] '+e.t+'</div>';}el('m-ev').innerHTML=evHtml;
+ var h='<div style="color:#4caf50;font-weight:bold;margin-bottom:5px">RADIANT · Kills '+M.rk+' · Gold '+Math.floor(M.rg)+'</div>';
+ for(var i=0;i<G.players.length;i++){var pp=G.players[i];h+='<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #161616;font-size:9px"><span style="color:#4caf50">'+pp.name+'</span><span style="color:#666">'+pp.lh+'/'+pp.dn+'</span><span style="color:#c9a84c">'+pp.kda.k+'/'+pp.kda.d+'/'+pp.kda.a+'</span><span>$'+Math.floor(pp.gold)+'</span><span style="color:#888">'+pp.inv.length+'/6</span></div>';}
+ h+='<div style="color:#f44336;font-weight:bold;margin:5px 0">DIRE · Kills '+M.dk+' · Gold '+Math.floor(M.dg)+'</div>';
+ for(var i=0;i<M.dire.length;i++){var dd=M.dire[i];h+='<div style="display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid #161616;font-size:9px"><span style="color:#f44336">'+dd.name+'</span><span style="color:#666">'+dd.lh+'/'+dd.dn+'</span><span style="color:#c9a84c">'+dd.kda.k+'/'+dd.kda.d+'/'+dd.kda.a+'</span><span>$'+Math.floor(dd.gold)+'</span></div>';}
+ el('m-sb').innerHTML=h;
+}
